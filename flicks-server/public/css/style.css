@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Raleway&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+*{
+    margin: 0px;
+}
+header{
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid gray;
+}
+header img{
+    width: 80px;
+}
+.container{
+    padding: 10px 100px;
+    font-family: 'Nunito', sans-serif;
+}
+.notice-container{
+    height: fit-content;
+    width: 100%;
+    background-color: floralwhite;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 10px 5px ;
+    margin-top: 20px;
+}
+input{
+    height: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+form{
+    margin-bottom: 20px;
+}
+button{
+    font-family: 'Nunito', sans-serif;
+    background: #A8E890;
+    border: none;
+    border-radius: 19px;
+    padding: 10px;
+}

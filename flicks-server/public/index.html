@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <img src="/assets/flicksTransparent.png" alt="flicks logo">
+    </header>
+    <div class="container">
+        <h1>Update Trailers</h1>
+        <p>Update the trailers section(upcoming movies) 
+           by adding youtube URLs to hot movies and tv 
+           shows coming to our screens. Adding a new TV 
+           show on Flicks is simple and easy
+        </p>
+        <div class="notice-container">
+            <h3>⚠️A few notes about adding Trailers to Flicks</h3>
+            <ul>
+                <li>You are currently adding a TV show in en-US 
+                    (English - United States of America).
+                </li>
+                <li>
+                    Only youtube emeds is currently allowed
+                </li>
+            </ul>
+        </div>
+        <p>Add traillers URL:</p>
+        <form action="/admin" method="post">
+            <input type="text" name="addTrailer">
+            <button type="submit">Upload</button>
+        </form>
+        <p>Remove traillers:</p>
+            <input type="text" name="removeTrailer" id="removeTrailerInput">
+            <button type="submit" id="deleteButton">Delete From Server</button>
+    </div>
+</body>
+<script>
+    let trailer= ''
+    const deleteButton = document.getElementById('deleteButton')
+    const removeTrailerInput = document.getElementById('removeTrailerInput')
+
+    const handleDelete = ()=>{
+        fetch('/admin',{method:'delete',headers:{trailerToRemove:trailer}}).then(alert('Deleted '+ trailer))
+    }
+    const handleSetTrailer = (event)=>{
+        trailer=(event.target.value)
+    }
+
+    deleteButton.addEventListener('click', handleDelete);
+    removeTrailerInput.addEventListener('input',handleSetTrailer)
+</script>
+</html>
