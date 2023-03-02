@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Raleway&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+.movies-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.movie-wrapper{
+    padding: 5px;
+    margin: 20px;
+    align-items: center;
+}
+.movie-wrapper img{
+    border-radius: 10px;
+}
+.meta{
+    padding: 10px;
+    height: 200px;
+    display: none;
+    flex-direction: column;
+    height: fit-content;
+    font-size: 14px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .movies-container{
+        display: block;
+    }
+    .movie-wrapper img{
+        height: 150px;
+    }
+    .movie-wrapper{
+        border-radius: 5px;
+        display: flex;
+        border: 1px solid gainsboro;
+    }
+    .meta{
+        font-family: 'Nunito', sans-serif;
+        display: inline-flex;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .meta{
+        font-size: 12px;
+    }
+  }
