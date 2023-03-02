@@ -1,1 +1,1 @@
-<h1>Flicks</h1>
+<h1 align=center>Flicks</h1>
