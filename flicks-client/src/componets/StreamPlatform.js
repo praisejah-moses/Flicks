@@ -5,7 +5,7 @@ import axios from 'axios';
 
 let config ={
     method:'get' ,
-    url: '/platform'
+    url: 'https://flicks-s33j.onrender.com/platform'
 }
 const StreamPlatform = ({animateShow,animateHidden}) => {
     const ref = useRef()

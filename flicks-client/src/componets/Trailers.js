@@ -4,7 +4,7 @@ import axios from 'axios';
 
 let config ={
     method:'get' ,
-    url: '/trailer'
+    url: 'https://flicks-s33j.onrender.com/trailer'
 }
 
 const Trailers = ({animateShow,animateHidden}) => {
