@@ -4,12 +4,11 @@ import mongoose from "mongoose";
 import cors from "cors";
 import  dotenv from 'dotenv'
 import path from 'path'
-import bodyParser from 'body-parser';
+import bodyParser from 'body-parser';import { log } from "console";
+3
 
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(cors())
-
 
 dotenv.config()
 const __dirname = path.resolve()
@@ -20,7 +19,7 @@ const stream_service = new mongoose.model('stream_service', {company:Array})
 const trailer = new mongoose.model('trailer', {trailers:Array})
 
 
-// let trailerURL = new trailer({trailers:{trailerURL:process.env.TRAILER_ENDPOINT+'o3xweOacwnM',id:0}})
+// let trailerURL = new trailer({trail:{trailerURL:process.env.TRAILER_ENDPOINT+'o3xweOacwnM',id:0}})
 // trailerURL.save()
 
 // let service = new stream_service({company:{service:process.env.TMDB_ENDPOINT+'/zxrVdFjIjLqkfnwyghnfywTn3Lh.jpg',id:'1'}})
@@ -34,13 +33,8 @@ const trailer = new mongoose.model('trailer', {trailers:Array})
 //     console.log(err)
 // });
 
-// trailer.findByIdAndUpdate('63d64d5d9280b79c4562f464',{$push:{trailers:
-//     {trailerURL:process.env.TRAILER_ENDPOINT+'qZVTkn2NjS0',id:5}
-// }},
-//     (err,data)=>{
-//     console.log(err)
-// });
- 
+
+//  API ENDPOINTS
 app.get('/', (req, res) => {
     res.send("API SERVER IS RUNNING")
 });
@@ -63,12 +57,23 @@ app.get('/admin', (req, res) => {
 })
 
 app.post('/admin', (req, res) => {
-    res.send('posted')
-    console.log(req.body.addTrailer)
+    res.send('Trailler Added')
+    const trailerToAdd= req.body.addTrailer
+
+    trailer.findByIdAndUpdate('63d64d5d9280b79c4562f464',{$push:{trailers:
+        {trailerURL:process.env.TRAILER_ENDPOINT+trailerToAdd,id:Math.random()}
+    }},(err,res) => {})
 });
+
 app.delete('/admin', (req, res) => {
     res.send('deleted')
-    console.log(req.headers.trailertoremove)
+    trailer.findById('63d64d5d9280b79c4562f464',(err,res)=>{
+        let trailers= res.trailers
+        let trailerToRemove = req.headers.trailertoremove
+        let newTrailer = trailers.filter(item=>item.trailerURL != trailerToRemove)
+
+        trailer.findByIdAndUpdate('63d64d5d9280b79c4562f464',{trailers:newTrailer},{new:true},(err,res)=>{});
+    })
 });
 
 app.listen(5000,()=>{
