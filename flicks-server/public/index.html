@@ -21,14 +21,18 @@
         <div class="notice-container">
             <h3>⚠️A few notes about adding Trailers to Flicks</h3>
             <ul>
-                <li>You are currently adding a TV show in en-US 
+                <li>You are currently adding a Movie or TV show in en-US 
                     (English - United States of America).
                 </li>
                 <li>
-                    Only youtube emeds is currently allowed
+                    Only youtube emeds is currently allowed(e.g 'KKyQgQD_pLI')
                 </li>
             </ul>
         </div>
+
+        <h3>Listed Trailers</h3>
+        <ul id="list"> </ul>
+        
         <p>Add traillers URL:</p>
         <form action="/admin" method="post">
             <input type="text" name="addTrailer">
@@ -39,19 +43,31 @@
             <button type="submit" id="deleteButton">Delete From Server</button>
     </div>
 </body>
+
 <script>
-    let trailer= ''
     const deleteButton = document.getElementById('deleteButton')
     const removeTrailerInput = document.getElementById('removeTrailerInput')
+    const trailerList = document.getElementById('list')
 
     const handleDelete = ()=>{
         fetch('/admin',{method:'delete',headers:{trailerToRemove:trailer}}).then(alert('Deleted '+ trailer))
     }
+
     const handleSetTrailer = (event)=>{
         trailer=(event.target.value)
     }
-
+    
     deleteButton.addEventListener('click', handleDelete);
     removeTrailerInput.addEventListener('input',handleSetTrailer)
+
+    async function listTrailers() {
+        const response = await fetch("/trailer");
+        let jsonData = await response.json()     
+
+        jsonData[0].trailers.forEach(element => {
+        trailerList.insertAdjacentHTML('beforeend','<li>'+element.trailerURL+'</li>')
+        });
+    }
+    listTrailers()   
 </script>
 </html>
