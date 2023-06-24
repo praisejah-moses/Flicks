@@ -9,6 +9,8 @@ import bodyParser from 'body-parser';import { log } from "console";
 
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(cors())
+
 
 dotenv.config()
 const __dirname = path.resolve()
